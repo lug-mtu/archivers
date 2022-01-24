@@ -43,3 +43,64 @@ template: minutes
     
     # Save to output file
     open(out_path+filename+'.md','w').write(text)
+
+# 20120126 is in a different format. I'll just manually write it down.
+text = """---
+date: 2012-01-26
+title: Minutes 2021-01-26
+tags: minutes,minutes2012
+template: minutes
+---
+```
+Attendees:
+Josh Knight
+Jacob Wiltse
+Jay Vana
+Peter Marheine
+Jared Ledvina
+Zhuoyu Zhou
+
+Meeting called to order
+Officer report:
+    T-shirts available
+
+Server status:
+    New 1 TB drive
+    New server potential
+    
+Discussed upgrading to a Gigabit connection. Funds still come from CS Gift Account. We can't afford it.
+Need to get stuff out of 317. Plan on moving the stuff this weekend. Email with more info coming.
+
+Installathon:
+    Looking at March
+    Location requests: MUB Commons
+    Helping out Chris' LAN party. He needs hardware, we can most likely help.
+
+Linux certifications:
+    Need to be looked into more.
+    Info on what it takes to get certified.
+    Offer help (hopefully) next semester.
+    Cost?
+    
+Penguicon:
+    Email will be sent to list
+
+Student cluster competition:
+    G is going.
+    We can probably help pay for it.
+    Competition for building clusters.
+    Will need more info from G.
+    
+Budget hearing:
+    Jan. 31st
+    Ideas:
+        Start high to work Low.
+        Mitch will be attending meeting for budget.
+        Last year's budget available on wiki.
+
+Open floor:
+    Social gathering before/after meetings?
+    Other ways to get the group to be more like a group.
+```
+"""
+open(out_path+'20120126.md','w').write(text)
