@@ -1,5 +1,6 @@
 import pdfminer.high_level
 import glob, os
+import string
 
 # Meeting minutes are stored as pdfs scraped from the wiki.
 path = 'Minutes/'
@@ -38,6 +39,7 @@ template: minutes
 ```
 """ + text + """
 ```"""
+    text = ''.join(filter(lambda x: x in set(string.printable), text))
     
     # Save to output file
     open(out_path+filename+'.md','w').write(text)
