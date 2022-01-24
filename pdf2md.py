@@ -33,15 +33,15 @@ for file in files:
         filename = file.split('/')[-1].replace('.pdf','')
         date = filename[:4]+'-'+filename[4:6]+'-'+filename[6:]
         text = """---
-    date: """ + date + """
-    title: Minutes """ + date + """
-    tags: minutes,minutes"""+date[:4]+"""
-    template: minutes
-    ---
-    
-    ```
+date: """ + date + """
+title: Minutes """ + date + """
+tags: minutes,minutes"""+date[:4]+"""
+template: minutes
+---
+
+```
     """ + text + """
-    ```"""
+```"""
         text = ''.join(filter(lambda x: x in set(string.printable), text))
         
         # Save to output file
