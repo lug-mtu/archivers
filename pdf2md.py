@@ -19,30 +19,33 @@ for file in files:
     # PDF -> text
     text = pdfminer.high_level.extract_text(file)
     
-    # Remove wiki tag
-    text = text.split('From MTU LUG wiki')[1]
-    text = text.split('Retrieved from')[0]
-    text = text.strip()
+    if '2012126-Minutes.pdf' not in file:
+        
     
-    # Clean up into templating markdown format.
-    # To keep the archive sane, I only view the files as a large chunk of
-    # unformatted info, hence the ``` ticks surrounding the text.
-    filename = file.split('/')[-1].replace('.pdf','')
-    date = filename[:4]+'-'+filename[4:6]+'-'+filename[6:]
-    text = """---
-date: """ + date + """
-title: Minutes """ + date + """
-tags: minutes,minutes"""+date[:4]+"""
-template: minutes
----
-
-```
-""" + text + """
-```"""
-    text = ''.join(filter(lambda x: x in set(string.printable), text))
+        # Remove wiki tag
+        text = text.split('From MTU LUG wiki')[1]
+        text = text.split('Retrieved from')[0]
+        text = text.strip()
+        
+        # Clean up into templating markdown format.
+        # To keep the archive sane, I only view the files as a large chunk of
+        # unformatted info, hence the ``` ticks surrounding the text.
+        filename = file.split('/')[-1].replace('.pdf','')
+        date = filename[:4]+'-'+filename[4:6]+'-'+filename[6:]
+        text = """---
+    date: """ + date + """
+    title: Minutes """ + date + """
+    tags: minutes,minutes"""+date[:4]+"""
+    template: minutes
+    ---
     
-    # Save to output file
-    open(out_path+filename+'.md','w').write(text)
+    ```
+    """ + text + """
+    ```"""
+        text = ''.join(filter(lambda x: x in set(string.printable), text))
+        
+        # Save to output file
+        open(out_path+filename+'.md','w').write(text)
 
 # 20120126 is in a different format. I'll just manually write it down.
 text = """---
