@@ -39,8 +39,8 @@ tags: minutes,minutes"""+date[:4]+"""
 template: minutes
 ---
 
-```
-    """ + text + """
+```text
+""" + text + """
 ```"""
         text = ''.join(filter(lambda x: x in set(string.printable), text))
         
@@ -54,7 +54,7 @@ title: Minutes 2012-01-26
 tags: minutes,minutes2012
 template: minutes
 ---
-```
+```text
 Attendees:
 Josh Knight
 Jacob Wiltse
