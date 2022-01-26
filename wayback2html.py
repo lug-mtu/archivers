@@ -10,26 +10,40 @@ for year_int,year in enumerate(years):
     for month_int,month in enumerate(months):
         
         # These times are not archived, or there were zero emails sent.
-        if year_int == 2 and month_int < 1:
+        if year_int == 0 and month_int < 9:
             pass
-        elif year_int == 3 and month_int == 6:
+        elif year_int == 2 and month_int == 6:
             pass
-        elif year_int == 6 and month_int > 3:
+        elif year_int == 5 and month_int > 3:
             pass
         else:
             # The time stamp: 20061113053117 is the most recent time before
             # /lists/ was redirected to a "technical difficulties" page, before
             # returning 404. lol. So, our latest archive is Nov, 2006.
-            url = "http://lug.mtu.edu/lists/lug-l-0"+str(year)+str(month)+"/threads.html"
-            command = "wayback-machine-scraper -f 20060707222054 -t 20060707222054 " + url
+            url = "http://lug.mtu.edu/lists/lug-l-"+str(year)+str(month)+"/threads.html"
+            command = "wayback-machine-scraper -f 20060205021848 -t 20061113053117 " + url
             print(command)
             subprocess.run(command.split(), stdout=subprocess.PIPE)
 
 # After scraping archive.org, we need to process the data. 
-files = sorted(glob.glob('website/**/*.snapshot', recursive=True))
+files = sorted(glob.glob('website/lug.mtu.edu/**/*.snapshot', recursive=True))
 
 # If you're on Windows, remove 
 files = [path.replace('\\', '/') for path in files]
+
+# Find the latest snapshot, then use that.
+chosen_snapshots = []
+i=0
+paths = [os.path.dirname(x) for x in files] 
+while i < len(files):
+    path = os.path.dirname(files[i]) 
+    indexes = [path == x for x in paths]
+    latest_snapshot = np.argwhere(indexes)[-1][0]
+    chosen_snapshots.append(latest_snapshot)
+    i = latest_snapshot+1
+    
+# Trim the remaining files -- I wish I knew list indexes better.
+files = np.array(files)[np.array(chosen_snapshots)].tolist()
 
 # index of lug.mtu.edu, I don't use this. If someone wants to see the homepage
 # from back then, just use web.archive.org.
