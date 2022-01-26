@@ -43,7 +43,7 @@ shutil.copy2(file, out_path+'index.html')
 
 # Just change extension from .snapshot to .html and move to output folder.
 for file in files[1:]:
-    paths = file.split('/')[2:]
+    paths = file.split('/')[3:]
     if not os.path.exists(out_path+paths[0]):
         os.mkdir(out_path+paths[0])
-    shutil.copy2(file, out_path+paths[0]+'/'+paths[1])
+    shutil.copy2(file, out_path+paths[0]+'/'+paths[1].replace('.snapshot','.html'))
