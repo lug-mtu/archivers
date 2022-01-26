@@ -50,7 +50,7 @@ template: minutes
 # 20120126 is in a different format. I'll just manually write it down.
 text = """---
 date: 2012-01-26
-title: Minutes 2021-01-26
+title: Minutes 2012-01-26
 tags: minutes,minutes2012
 template: minutes
 ---
